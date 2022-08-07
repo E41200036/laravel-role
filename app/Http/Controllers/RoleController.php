@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct() {
+        $this->middleware('can:create role')->only('create');
+    }
+
     public function index(Request $request)
     {
-        if($request->user()->hasRole('it')) {
-            return 'role_page';
-        }
-        abort(403);
+        // if($request->user()->hasRole('it')) {
+        //     return 'role_page';
+        // }
+        // abort(403);
+
+        // $this->authorize('read role');
+        return 'role_page';
     }
 
     /**
@@ -26,7 +29,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return 'create role page';
     }
 
     /**
